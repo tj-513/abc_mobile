@@ -1,0 +1,20 @@
+151
+50000
+Samsung Galaxy S4
+Factory Unlocked</br>Features available</br>5mp camera</br>
+images/image1.jpg
+458
+60000
+Apple iPhone 6s
+Factory Unlocked</br>Features available</br>5mp camera</br>
+images/image2.jpg
+554
+70000
+Apple iPhone 5C
+Factory Unlocked</br>Features available</br>5mp camera</br>
+images/image3.jpg
+151
+54000
+Apple iPad Mini
+Factory Unlocked</br>Features available</br>5mp camera</br>
+images/image4.jpg
