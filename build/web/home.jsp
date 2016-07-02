@@ -155,8 +155,9 @@
 
                     <div class="row">
                         <% ArrayList<Product> productList = (ArrayList) request.getAttribute("products"); %> 
+                       <% System.out.println(productList); %>
                         <% for (Product product : productList) {%> 
-                        <% System.out.println("this line reached"); %>
+                        
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail"> 
                                 <img src="${pageContext.request.contextPath} /images/<%=product.getImage()%>" alt="">

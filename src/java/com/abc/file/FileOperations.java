@@ -32,24 +32,35 @@ public class FileOperations {
     public ArrayList<Product> readProductContentFromFile(String fileName) {
         ArrayList<Product> productList = new ArrayList<>();
         Scanner in;
+        File inputFile;
         try {
-            in = new Scanner(new File(fileName));
+            inputFile = new  File(fileName);
+            in = new Scanner(inputFile);
         } catch (FileNotFoundException ex) {
             System.out.println("FileNotFound " + ex);
             return null;
         }
-        while(in.hasNextLine()){
+        int count = Integer.parseInt(in.nextLine());
+        System.out.println(inputFile.getAbsolutePath());
+
+        while(count-->0){
             Product product = new Product();
             product.setId(Integer.parseInt(in.nextLine()));
             product.setPrice(Integer.parseInt(in.nextLine()));
             product.setName(in.nextLine());
             product.setDescription(in.nextLine());
             product.setImage(in.nextLine());
-            
-            
-            
+   
         }
         
         return productList;
+    }
+    
+    
+    ///main for testing 
+    public static void main(String[] args) {
+        FileOperations fo = new FileOperations();
+        ArrayList <Product> products = fo.readProductContentFromFile("content.txt");
+        System.out.println(products);
     }
 }

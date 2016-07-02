@@ -55,7 +55,7 @@ public class CompanyServlet extends HttpServlet {
         //System.out.println(new File(".").getAbsolutePath() );
         FileOperations fo = new FileOperations();
         //adds the read data to products list
-        products.addAll(fo.readProductContentFromFile("content.txt"));
+        products.add(new Product(13, "Samsung Galaxy s5", 50000, "factory original<br/>10MP Camera", "images/image1.jpg"));
         
         request.setAttribute("products", products);
         request.getRequestDispatcher("home.jsp").forward(request, response);
