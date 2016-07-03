@@ -49,12 +49,15 @@ public class CompanyServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+       
         /**retrieves data from  database
          * 
          */
         DBOperations dbOps = new DBOperations();
         ArrayList<Product> products = dbOps.getAllProductsList();
         ArrayList<String> manufacturers = dbOps.getAllManufacturers();
+        
+        
         
         request.setAttribute("products", products);
         request.setAttribute("manufacturers", manufacturers);
