@@ -71,7 +71,7 @@
         </nav>
 
         <!-- Page Content -->
-        <div class="container">
+        <div class="container" >
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
@@ -112,9 +112,6 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-            </div>
-            <div class="container">
-
                 <!-- Jumbotron Header -->
                 <header class="jumbotron" style="text-align:center">
 
@@ -123,6 +120,11 @@
                     <p><a class="btn btn-primary btn-large">Contact Us</a>
                     </p>
                 </header>
+            </div>
+            <div class="container">
+
+                
+                
 
                 <hr>
 

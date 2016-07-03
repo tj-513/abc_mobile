@@ -14,16 +14,20 @@
 
 <% for (Product product : productList) {%> 
 
-<div class="col-sm-4 col-lg-4 col-md-4">
-    <div class="thumbnail"> 
+<div class="col-sm-6 col-lg-3 col-md-4">
+    <div class="thumbnail"  style="padding:5%"> 
         <img class="thumbnail"  src="${pageContext.request.contextPath}/images/<%=product.getImage()%>" alt="">
         <div class="caption">
-            <h4 class="pull-right">$<%=product.getPrice()%></h4>
-            <h4><a href="#"><%=product.getName()%></a> </h4> 
+            <div class="row">
+                <h4 class="pull-left text-primary"><%=product.getName()%> </h4> 
+            </div>
+            <div class="row">
+                <h4 class="pull-left">Rs.<%=product.getPrice()%></h4>
+            </div>
             <p> <%=product.getDescription()%> </p>
         </div> 
-        <div class="ratings"> 
-            <a href="${pageContext.request.contextPath}/PurchaseProductServlet?id=<%=product.getId()%>" class="btn btn-primary">Order Now</a>
+        <div class="ratings text-center"> 
+            <a href="${pageContext.request.contextPath}/PurchaseProductServlet?id=<%=product.getId()%>" class="btn btn-primary text-center">Order Now</a>
         </div> 
     </div> 
 </div> 
