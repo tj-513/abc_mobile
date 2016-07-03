@@ -5,6 +5,7 @@
  */
 package com.abc.servlets;
 
+import com.abc.database.DBOperations;
 import com.abc.file.FileOperations;
 import com.abc.products.Product;
 import java.io.File;
@@ -47,15 +48,13 @@ public class CompanyServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<Product> products = new ArrayList<>();
+        
+        /**retrieves data from  database
+         * 
+         */
+        DBOperations dbOps = new DBOperations();
+        ArrayList<Product> products = dbOps.getAllProductsList();
        
-        // reads from text file
-        //used following code fragment to find default directory
-        //C:\xampp\tomcat\bin\
-        //System.out.println(new File(".").getAbsolutePath() );
-        FileOperations fo = new FileOperations();
-        //adds the read data to products list
-        products.add(new Product(13, "Samsung Galaxy s5", 50000, "factory original<br/>10MP Camera", "images/image1.jpg"));
         
         request.setAttribute("products", products);
         request.getRequestDispatcher("home.jsp").forward(request, response);
