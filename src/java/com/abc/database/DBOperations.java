@@ -56,10 +56,23 @@ public class DBOperations {
      * Overloaded version of getAllProductsList
      * Queries database for all products and returns a list of them
      *
+     * @param limit maximum amount of results required
      * @return arraylist of all products
      */
     public ArrayList<Product> getAllProductsList(int limit) {
         String query = String.format("select * from phone limit %d", limit);
+        return executeQuery(query);
+    }
+
+    /**
+     * Method to generate related products
+     *
+     * @param id
+     * @param limit maximum amount of results required
+     * @return arraylist of all products
+     */
+    public ArrayList<Product> getRelatedProductsList(int id ,int limit) {
+        String query = String.format("select * from phone where id != %d limit %d", id, limit);
         return executeQuery(query);
     }
 

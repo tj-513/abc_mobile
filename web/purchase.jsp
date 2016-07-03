@@ -94,7 +94,7 @@
 
             <!-- left column end-->
         </div>
-                <div class="row text-left" style="padding:5px">
+        <div class="row text-left" style="padding:5px">
 
             <div class="row">
                 <div class="col-lg-12">
@@ -105,13 +105,15 @@
             <%for (Product p : products) {%>
             <div class="text-left col-md-3 col-sm-6">
                 <div class="img-thumbnail thumbnail img-rounded">
-                    <img src="images/<%=p.getImage()%>" alt="">
+                    <a href="PurchaseProductServlet?id=<%=p.getId()%>" >
+                        <img src="images/<%=p.getImage()%>" alt=""/>
+                    </a>
                 </div>
                 <div class="row text-center"> <%=p.getName()%></div>
             </div>
 
             <%}%>
-            
+
             <!-- /.row -->
         </div>
         <hr>
