@@ -23,7 +23,7 @@
             <p> <%=product.getDescription()%> </p>
         </div> 
         <div class="ratings"> 
-            <a href="${pageContext.request.contextPath}/purchase.jsp" class="btn btn-primary">Order Now</a>
+            <a href="${pageContext.request.contextPath}/PurchaseProductServlet?id=<%=product.getId()%>" class="btn btn-primary">Order Now</a>
         </div> 
     </div> 
 </div> 
