@@ -42,21 +42,14 @@ public class PurchaseProductServlet extends HttpServlet {
         int productId = Integer.parseInt(id);
         DBOperations dbOps = new DBOperations(); //instantiate dboperations object
         Product product = dbOps.getProductDetailsByID(productId);//retrieved product
-        ArrayList<Product> products;
+        ArrayList<Product> products = dbOps.getRelatedProductsList(productId, 4);
         //attaches product info to jsp
         if (product == null) {
             request.setAttribute("product", new Product(-1, "No Such Product found", 0, "", "notfound.jpg"));
-            products = dbOps.getAllProductsList();
+            //products = dbOps.getAllProductsList();
         } else {
             request.setAttribute("product", product);
-            products = dbOps.getProductDetails(product.getManufacturer());
-            //if products are not enough to fill out related products list
-            //which has a maximum of four, append some more to products
-            if(products.size() < 4)
-              products.addAll(dbOps.getAllProductsList(4 - products.size()));
-            
-            
-            
+       
         }
         //attach related products list
         request.setAttribute("products", products);
