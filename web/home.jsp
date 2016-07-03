@@ -127,11 +127,10 @@
                     <!-- Phone brands -->
                     <div class="list-group">
                         <a href="#" class="list-group-item active">Latest</a>
-                        <a href="#" class="list-group-item">Samsung</a>
-                        <a href="#" class="list-group-item">Microsoft</a>
-                        <a href="#" class="list-group-item">Apple</a>
-                        <a href="#" class="list-group-item">HTC</a>
-                        <a href="#" class="list-group-item">Huawei</a>
+                        <% ArrayList<String> manufList = (ArrayList) request.getAttribute("manufacturers"); %>
+                        <% for(String manuf :manufList ){ %>                                               
+                        <a href="#" class="list-group-item"><%=manuf.toUpperCase() %></a>
+                        <% } %>
 
                     </div>
 
@@ -153,9 +152,9 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div id="products_list" class="row">
                         <% ArrayList<Product> productList = (ArrayList) request.getAttribute("products"); %> 
-                       <% System.out.println(productList); %>
+                       
                         <% for (Product product : productList) {%> 
                         
                         <div class="col-sm-4 col-lg-4 col-md-4">
