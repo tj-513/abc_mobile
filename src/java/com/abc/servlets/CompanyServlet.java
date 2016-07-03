@@ -54,9 +54,10 @@ public class CompanyServlet extends HttpServlet {
          */
         DBOperations dbOps = new DBOperations();
         ArrayList<Product> products = dbOps.getAllProductsList();
-       
+        ArrayList<String> manufacturers = dbOps.getAllManufacturers();
         
         request.setAttribute("products", products);
+        request.setAttribute("manufacturers", manufacturers);
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 
