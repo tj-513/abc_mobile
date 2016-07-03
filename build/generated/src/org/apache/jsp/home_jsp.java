@@ -68,7 +68,11 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("css/heroic-features.css\" rel=\"stylesheet\">\r\n");
       out.write("\r\n");
-      out.write("\r\n");
+      out.write("        <script>\r\n");
+      out.write("            function loadProductDetails(var manuf){\r\n");
+      out.write("                $(\"#products_list\").load(\"abcCompany/RetrieveProductsServlet?manufacturer=\"+manuf );\r\n");
+      out.write("            }\r\n");
+      out.write("        </script>\r\n");
       out.write("\r\n");
       out.write("    </head>\r\n");
       out.write("\r\n");
@@ -174,11 +178,20 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <!-- Phone brands -->\r\n");
       out.write("                    <div class=\"list-group\">\r\n");
       out.write("                        <a href=\"#\" class=\"list-group-item active\">Latest</a>\r\n");
-      out.write("                        <a href=\"#\" class=\"list-group-item\">Samsung</a>\r\n");
-      out.write("                        <a href=\"#\" class=\"list-group-item\">Microsoft</a>\r\n");
-      out.write("                        <a href=\"#\" class=\"list-group-item\">Apple</a>\r\n");
-      out.write("                        <a href=\"#\" class=\"list-group-item\">HTC</a>\r\n");
-      out.write("                        <a href=\"#\" class=\"list-group-item\">Huawei</a>\r\n");
+      out.write("                        ");
+ ArrayList<String> manufList = (ArrayList) request.getAttribute("manufacturers"); 
+      out.write("\r\n");
+      out.write("                        ");
+ for (String manuf : manufList) {
+      out.write("                                               \r\n");
+      out.write("                        <a href=\"#\" onclick=\"loadProductDetails(");
+      out.print(manuf);
+      out.write(");\" class=\"list-group-item\">");
+      out.print(manuf.toUpperCase());
+      out.write("</a>\r\n");
+      out.write("                        ");
+ } 
+      out.write("\r\n");
       out.write("\r\n");
       out.write("                    </div>\r\n");
       out.write("\r\n");
@@ -200,22 +213,20 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        </div>\r\n");
       out.write("                    </div>\r\n");
       out.write("\r\n");
-      out.write("                    <div class=\"row\">\r\n");
+      out.write("                    <div id=\"products_list\" class=\"row\">\r\n");
       out.write("                        ");
  ArrayList<Product> productList = (ArrayList) request.getAttribute("products"); 
       out.write(" \r\n");
-      out.write("                       ");
- System.out.println(productList); 
       out.write("\r\n");
       out.write("                        ");
  for (Product product : productList) {
       out.write(" \r\n");
-      out.write("                        \r\n");
+      out.write("\r\n");
       out.write("                        <div class=\"col-sm-4 col-lg-4 col-md-4\">\r\n");
       out.write("                            <div class=\"thumbnail\"> \r\n");
-      out.write("                                <img src=\"");
+      out.write("                                <img class=\"thumbnail\"  src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write(" /images/");
+      out.write("/images/");
       out.print(product.getImage());
       out.write("\" alt=\"\">\r\n");
       out.write("                                <div class=\"caption\">\r\n");
@@ -232,7 +243,7 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                <div class=\"ratings\"> \r\n");
       out.write("                                    <a href=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/product.jsp\" class=\"btn btn-primary\">Order Now</a>\r\n");
+      out.write("/purchase.jsp\" class=\"btn btn-primary\">Order Now</a>\r\n");
       out.write("                                </div> \r\n");
       out.write("                            </div> \r\n");
       out.write("                        </div> \r\n");
