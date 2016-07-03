@@ -94,7 +94,7 @@
 
             <!-- left column end-->
         </div>
-        <div class="row text-left" style="padding:5px">
+        <div class="row text-left" style="padding: 5%">
 
             <div class="row">
                 <div class="col-lg-12">
