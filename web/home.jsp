@@ -14,6 +14,11 @@
         <meta name="author" content="">
 
         <title>B-Mobile Online Shopping</title>
+        <!-- jQuery -->
+        <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
         <!-- Bootstrap Core CSS Uses relative paths from jsp  -->
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
@@ -22,8 +27,8 @@
         <link href="${pageContext.request.contextPath}/css/heroic-features.css" rel="stylesheet">
 
         <script>
-            function loadProductDetails(manuf){
-                $("#products_list").load("RetrieveProductsServlet?manufacturer="+manuf );
+            function loadProductDetails(manuf) {
+                $("#products_list").load("RetrieveProductsServlet?manufacturer=" + manuf);
             }
         </script>
 
@@ -134,7 +139,7 @@
                         <% ArrayList<String> manufList = (ArrayList) request.getAttribute("manufacturers"); %>
                         <% for (String manuf : manufList) {%>                                               
                         <button onclick="loadProductDetails('<%=manuf%>');" class="list-group-item"><%=manuf.toUpperCase()%></button>
-                        <% } %>
+                        <% }%>
 
                     </div>
 
@@ -157,24 +162,7 @@
                     </div>
 
                     <div id="products_list" class="row">
-                        <% ArrayList<Product> productList = (ArrayList) request.getAttribute("products"); %> 
-
-                        <% for (Product product : productList) {%> 
-
-                        <div class="col-sm-4 col-lg-4 col-md-4">
-                            <div class="thumbnail"> 
-                                <img class="thumbnail"  src="${pageContext.request.contextPath}/images/<%=product.getImage()%>" alt="">
-                                <div class="caption">
-                                    <h4 class="pull-right">$<%=product.getPrice()%></h4>
-                                    <h4><a href="#"><%=product.getName()%></a> </h4> 
-                                    <p> <%=product.getDescription()%> </p>
-                                </div> 
-                                <div class="ratings"> 
-                                    <a href="${pageContext.request.contextPath}/purchase.jsp" class="btn btn-primary">Order Now</a>
-                                </div> 
-                            </div> 
-                        </div> 
-                        <% }%> 
+                        <script>loadProductDetails('all');</script> 
                     </div>
 
                 </div>
@@ -195,11 +183,6 @@
         </div>
         <!-- /.container -->
 
-        <!-- jQuery -->
-        <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
     </body>
 
