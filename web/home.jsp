@@ -19,9 +19,13 @@
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="${pageContext.request.contextPath}css/heroic-features.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/heroic-features.css" rel="stylesheet">
 
-
+        <script>
+            function loadProductDetails(manuf){
+                $("#products_list").load("RetrieveProductsServlet?manufacturer="+manuf );
+            }
+        </script>
 
     </head>
 
@@ -126,10 +130,10 @@
                 <div class="col-md-3">
                     <!-- Phone brands -->
                     <div class="list-group">
-                        <a href="#" class="list-group-item active">Latest</a>
+                        <button onclick="loadProductDetails('all');" class="list-group-item">All Products</button>
                         <% ArrayList<String> manufList = (ArrayList) request.getAttribute("manufacturers"); %>
-                        <% for(String manuf :manufList ){ %>                                               
-                        <a href="#" class="list-group-item"><%=manuf.toUpperCase() %></a>
+                        <% for (String manuf : manufList) {%>                                               
+                        <button onclick="loadProductDetails('<%=manuf%>');" class="list-group-item"><%=manuf.toUpperCase()%></button>
                         <% } %>
 
                     </div>
@@ -154,9 +158,9 @@
 
                     <div id="products_list" class="row">
                         <% ArrayList<Product> productList = (ArrayList) request.getAttribute("products"); %> 
-                       
+
                         <% for (Product product : productList) {%> 
-                        
+
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail"> 
                                 <img class="thumbnail"  src="${pageContext.request.contextPath}/images/<%=product.getImage()%>" alt="">
