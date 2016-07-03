@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sun.jdbc.odbc.JdbcOdbcDriver;
@@ -112,7 +113,32 @@ public class DBOperations {
         }
 
     }
+ /**
+  *  Retrieves a list of all distinct manufacturers from phone table
+  * @return A list of all manufacturers
+  */
+    public ArrayList<String> getAllManufacturers(){
+        try {
+            ArrayList<String> manufacturers = new ArrayList<>();
+            //establish connection            
+            con = (Connection)DriverManager.getConnection(url, username, password);
+            //prepare statement
+            pst = (PreparedStatement) con.prepareStatement("SELECT DISTINCT manufacturer FROM phone ORDER BY manufacturer");
+            //execute query , returns a resultset
+            rs = pst.executeQuery();
+            //add the results to products list
+            while (rs.next()) {
+                manufacturers.add(rs.getString("manufacturer"));
+            }
+            con.close();
 
+            return manufacturers;
+        } catch (SQLException ex) {
+            Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+    }
     /**
      * Main method for testing method functionality
      *
@@ -140,5 +166,12 @@ public class DBOperations {
         System.out.println("Retrieving products by non existent manufacturer");
         System.out.println(testOps.getProductDetails("fakemanu"));
         System.out.println("success");
+        
+        
+        System.out.println("Retrieving manufacturers");
+        System.out.println(testOps.getAllManufacturers());
+        System.out.println("success");
+        
+        
     }
 }
