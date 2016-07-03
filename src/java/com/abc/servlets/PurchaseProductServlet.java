@@ -9,6 +9,8 @@ import com.abc.database.DBOperations;
 import com.abc.products.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,8 +26,9 @@ public class PurchaseProductServlet extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
-     * Extracts product ID from GET request and queries database to obtain more info about the product
+     * Handles the HTTP <code>GET</code> method. Extracts product ID from GET
+     * request and queries database to obtain more info about the product
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -34,21 +37,31 @@ public class PurchaseProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String id = request.getParameter("id");
         int productId = Integer.parseInt(id);
         DBOperations dbOps = new DBOperations(); //instantiate dboperations object
         Product product = dbOps.getProductDetailsByID(productId);//retrieved product
-        
-        if(product == null)
-            request.setAttribute("product", new Product(-1,"No Such Product found",0,"","notfound.jpg") ) ;
-        else
+        ArrayList<Product> products;
+        //attaches product info to jsp
+        if (product == null) {
+            request.setAttribute("product", new Product(-1, "No Such Product found", 0, "", "notfound.jpg"));
+            products = dbOps.getAllProductsList();
+        } else {
             request.setAttribute("product", product);
-        
+            products = dbOps.getProductDetails(product.getManufacturer());
+            //if products are not enough to fill out related products list
+            //which has a maximum of four, append some more to products
+            if(products.size() < 4)
+              products.addAll(dbOps.getAllProductsList(4 - products.size()));
+            
+            
+            
+        }
+        //attach related products list
+        request.setAttribute("products", products);
         request.getRequestDispatcher("purchase.jsp").forward(request, response);
     }
-
-    
 
     /**
      * Returns a short description of the servlet.
