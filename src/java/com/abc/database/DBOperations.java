@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sun.jdbc.odbc.JdbcOdbcDriver;
 
 /**
  *
@@ -32,6 +33,15 @@ public class DBOperations {
     PreparedStatement pst = null; //Statement to be prepared for queries
     ResultSet rs = null; //result of database query
 
+    public DBOperations() {
+        try {
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+        } catch (SQLException ex) {
+            Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
     /**
      * Queries database for all products and returns a list of them
      *
