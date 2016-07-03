@@ -5,8 +5,11 @@
  */
 package com.abc.servlets;
 
+import com.abc.database.DBOperations;
+import com.abc.products.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,7 +46,22 @@ public class RetrieveProductsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //extract manufacturer from get request
+         String queryString = request.getQueryString();
+        System.out.println(queryString);
+        System.out.println(request.getParameter("ab"));
+        
+        String manufacturerName = request.getParameter("manufacturer");
+        
+        DBOperations dbOps = new DBOperations();
+        ArrayList<Product> products;
+        if(manufacturerName.equals("all"))
+            products = dbOps.getAllProductsList();
+        else
+            products = dbOps.getProductDetails(manufacturerName);
+       
+        System.out.println(products);
+        request.setAttribute("products", products);
+        request.getRequestDispatcher("products.jsp").forward(request, response);
     }
 
     /**
