@@ -52,6 +52,16 @@ public class DBOperations {
         String query = "select * from phone;";
         return executeQuery(query);
     }
+    /**
+     * Overloaded version of getAllProductsList
+     * Queries database for all products and returns a list of them
+     *
+     * @return arraylist of all products
+     */
+    public ArrayList<Product> getAllProductsList(int limit) {
+        String query = String.format("select * from phone limit %d", limit);
+        return executeQuery(query);
+    }
 
     /**
      * Queries database for specified manufacturer
