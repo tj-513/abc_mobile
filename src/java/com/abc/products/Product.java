@@ -117,4 +117,11 @@ public class Product {
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
     }
+
+    @Override
+    public String toString() {
+        return String.format("[id:%d name:%s price:%d img:%s man:%s]", id, name, price, image, manufacturer); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 }
