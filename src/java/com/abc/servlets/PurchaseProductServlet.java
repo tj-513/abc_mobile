@@ -5,6 +5,8 @@
  */
 package com.abc.servlets;
 
+import com.abc.database.DBOperations;
+import com.abc.products.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -23,7 +25,7 @@ public class PurchaseProductServlet extends HttpServlet {
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
-     *
+     * Extracts product ID from GET request and queries database to obtain more info about the product
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -33,21 +35,20 @@ public class PurchaseProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String id = request.getParameter("id");
+        int productId = Integer.parseInt(id);
+        DBOperations dbOps = new DBOperations(); //instantiate dboperations object
+        Product product = dbOps.getProductDetailsByID(productId);//retrieved product
+        
+        if(product == null)
+            request.setAttribute("product", new Product(-1,"No Such Product found",0,"","notfound.jpg") ) ;
+        else
+            request.setAttribute("product", product);
+        
+        request.getRequestDispatcher("purchase.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-    }
+    
 
     /**
      * Returns a short description of the servlet.
