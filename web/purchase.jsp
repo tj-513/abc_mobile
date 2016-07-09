@@ -65,23 +65,50 @@
         </div>
         <!-- Page Content -->
         <div class="container">
-            <div class="row jumbotron" style="background-color:#CCC">
+            <div class="row jumbotron" id="main_area" style="background-color:#CCC">
                 <!-- Jumbotron Header -->
                 <div class="row">
                     <h2 style="padding-left: 5px;">${product.name}</h2>
                     <h3 style="padding-left: 5px;"> Price:Rs.${product.price}</h3>
                 </div>
+                <div class="row">
                 <div class="col-md-4 pull-left">
                     <img src="images/${product.image}" class="img-thumbnail thumbnail text-left pull-left" style="border:3px grey outset "/>
                 </div>
                 <div class="col-md-8">
                     <h4>${product.description}</h4>
                 </div>
+                </div>
 
+                <div class="row" id="input">
+                    <form class="form-horizontal" method="POST" >
+                        <div class="form-group">
+                            <label for="inputEmail1" class="col-sm-2 control-label">Full Name</label>
+                            <div class="col-sm-10 col-md-5">
+                                <input type="text" name="name" class="form-control" id="inputEmail1" placeholder="John Doe">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10 col-md-5">
+                                <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">Your Telephone</label>
+                            <div class="col-sm-10 col-md-5">
+                                <input type="tel" name="phone" class="form-control" id="inputPassword3" placeholder="Telephone">
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" onclick="$('#input').load('Success')" class="btn btn-danger">Buy Now</button>
+                            </div>
+                        </div>
+                    </form>
 
-                <button class="btn  btn-primary" style="background-color: crimson" onclick="load_purchase_details()" ><h4>Purchase Now</h4> </button>
-                <button class="btn  btn-primary" style="background-color: green" onclick="load_purchase_details()" ><h4>Add to Wishlist</h4> </button>
-
+                </div>
             </div>
             <hr>
 
