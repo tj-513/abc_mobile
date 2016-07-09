@@ -63,10 +63,11 @@
 
             </ol>
         </div>
-        <!-- Page Content -->
+        <!-- Page Content  h -->
         <div class="container">
             <div class="row jumbotron" id="main_area" style="background-color:#CCC">
                 <!-- Jumbotron Header -->
+                <!-- header -->
                 <div class="row">
                     <h2 style="padding-left: 5px;">${product.name}</h2>
                     <h3 style="padding-left: 5px;"> Price:Rs.${product.price}</h3>
